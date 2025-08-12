@@ -4,11 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RRHS Royal Robotics | FRC Team 5842</title>
-    <style>
+  <style>
+    /* Reset & base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: #8a62ff #100a33;
+    }
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #100a33;
+      border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #8a62ff;
+      border-radius: 6px;
+      border: 3px solid #100a33;
+      transition: background-color 0.3s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #b085ff;
     }
     body {
       font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,33 +49,6 @@
     a:focus {
       color: #b085ff;
       outline: none;
-    }
-
-    .hero {
-      position: relative;
-      padding: 8rem 2rem 8rem;
-      text-align: center;
-      color: #dedcff;
-      user-select: none;
-      height: auto;
-      overflow: visible;
-      filter: none;
-      background-color:  #100a33;
-      border: none;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      font-weight: 900;
-      letter-spacing: 0.15em;
-      margin-bottom: 0.6rem;
-      color: #a381ff;
     }
 
     header {
@@ -83,9 +76,12 @@
       user-select: none;
       cursor: default;
     }
+
     nav {
       display: flex;
       gap: 2rem;
+      flex-wrap: wrap;
+      transition: transform 0.35s ease, opacity 0.35s ease;
     }
     nav a {
       font-weight: 600;
@@ -113,19 +109,24 @@
       width: 100%;
     }
 
+    /* Hamburger Menu */
     .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
-      width: 24px;
-      height: 18px;
+      width: 28px;
+      height: 22px;
       justify-content: space-between;
+      flex-shrink: 0;
+      z-index: 1300;
+      transition: transform 0.3s ease;
     }
     .menu-toggle span {
-      height: 3px;
+      height: 3.5px;
       background: #b08fff;
-      border-radius: 2px;
+      border-radius: 3px;
       transition: all 0.3s ease;
+      transform-origin: center;
     }
     .menu-toggle.active span:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
@@ -137,12 +138,48 @@
       transform: rotate(-45deg) translate(5px, -5px);
     }
 
+    .hero {
+  display: flex;
+  justify-content: center;   /* centers horizontally */
+  padding: 8rem 2rem 8rem;
+  text-align: center;
+  color: #dedcff;
+  user-select: none;
+  background-color: #100a33;
+}
+
+.hero-content {
+  max-width: 1100px; /* increased width */
+  width: 100%;
+  padding: 0 1rem;
+}
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.6rem;
+      color: #a381ff;
+    }
+    .hero h2 {
+      font-weight: 700;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-bottom: 0.8rem;
+      color: #b085ff;
+      user-select: none;
+    }
+
     main {
       max-width: 1100px;
-      margin: 3rem auto;
-      padding: 0 2rem;
+      margin: 2.5rem auto 4rem;
+      padding: 0 1.5rem;
       flex-grow: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
     }
+
     section {
       background-color: #2d2780;
       border-radius: 6px;
@@ -150,9 +187,13 @@
       margin-bottom: 3rem;
       color: #fff;
       transition: background-color 0.3s ease;
+      flex: 1 1 300px;
+      max-width: 700px;
     }
-    section:hover {
+    section:hover,
+    section:focus-within {
       background-color: #3a2f90;
+      outline: none;
     }
     section h2 {
       font-weight: 700;
@@ -170,19 +211,36 @@
       line-height: 1.7;
       color: #eee;
     }
+    ul {
+      max-width: 760px;
+      margin: 0 auto;
+      padding-left: 1.3rem;
+      color: #eee;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+    ul li {
+      margin-bottom: 0.4rem;
+    }
 
+    /* Stats Items - no wrapper, flex children of main */
     .stat-item {
-      max-width: 250px;
-      margin: 2rem auto;
       background-color: #3a2f90;
-      padding: 1.5rem 1rem;
+      padding: 1.5rem 1.2rem;
       border-radius: 8px;
       text-align: center;
       user-select: none;
       transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgb(58 47 144 / 0.3);
+      flex: 1 1 200px;
+      max-width: 250px;
+      margin: 0;
     }
-    .stat-item:hover {
+    .stat-item:hover,
+    .stat-item:focus-within {
       background-color: #4b3fbd;
+      outline: none;
+      box-shadow: 0 6px 14px rgb(75 63 189 / 0.5);
     }
     .stat-number {
       font-size: 3rem;
@@ -190,11 +248,13 @@
       color: #a381ff;
       letter-spacing: 0.1em;
       margin-bottom: 0.3rem;
+      user-select: text;
     }
     .stat-label {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
       color: #ddd;
+      user-select: none;
     }
 
     footer {
@@ -203,7 +263,7 @@
       padding: 3rem 2rem;
       user-select: none;
     }
-    footer .footer-container {
+    .footer-container {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
@@ -224,6 +284,7 @@
     }
     .footer-section ul {
       list-style: none;
+      padding-left: 0;
     }
     .footer-section ul li {
       margin-bottom: 0.7rem;
@@ -267,38 +328,7 @@
       fill: currentColor;
     }
 
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
-      nav.mobile-active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 2rem;
-        background-color: #5739bdcc;
-        padding: 1rem 2rem;
-        border-radius: 8px;
-        z-index: 1200;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-      footer .footer-container {
-        flex-direction: column;
-        gap: 3rem;
-      }
-    }
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: clamp(1.8rem, 10vw, 2.5rem);
-      }
-      section {
-        padding: 1.4rem 1rem;
-      }
-    }
-
+    /* Typing text */
     #typing-text {
       font-size: clamp(1.2rem, 4vw, 2rem);
       font-weight: 600;
@@ -319,26 +349,70 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    ::-webkit-scrollbar {
-      width: 12px;
-      height: 12px;
+    /* Responsive */
+    @media (max-width: 1024px) {
+      main {
+        max-width: 95%;
+      }
     }
-    ::-webkit-scrollbar-track {
-      background: #100a33;
-      border-radius: 6px;
+    @media (max-width: 768px) {
+      nav {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 56px;
+        right: 1.5rem;
+        background-color: #5739bddd;
+        padding: 1rem 1.75rem;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        width: 220px;
+        transform: translateX(110%);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1200;
+      }
+      nav.mobile-active {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      footer .footer-container {
+        flex-direction: column;
+        gap: 3rem;
+      }
+      section {
+        max-width: 100%;
+        flex: 1 1 100%;
+        margin-bottom: 2rem;
+      }
+      .stat-item {
+        max-width: 100%;
+        flex-basis: auto;
+        margin: 0 auto 1rem;
+      }
+      .hero h1 {
+        font-size: clamp(1.8rem, 10vw, 2.5rem);
+      }
+      .hero h2 {
+        font-size: clamp(1.3rem, 8vw, 1.8rem);
+      }
+      main {
+        padding: 0 1rem;
+        margin: 2rem auto 3rem;
+      }
     }
-    ::-webkit-scrollbar-thumb {
-      background-color: #8a62ff;
-      border-radius: 6px;
-      border: 3px solid #100a33;
-      transition: background-color 0.3s ease;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #b085ff;
-    }
-    * {
-      scrollbar-width: thin;
-      scrollbar-color: #8a62ff #100a33;
+    @media (max-width: 480px) {
+      section p,
+      ul {
+        font-size: 1rem;
+      }
+      ul {
+        padding-left: 1rem;
+      }
     }
   </style>
 </head>
@@ -362,7 +436,7 @@
       </div>
     </div>
   </header>
-
+  <center>
   <section class="hero" aria-label="Welcome section">
     <div class="hero-content">
       <h1>RRHS Royal Robotics</h1>
@@ -370,6 +444,7 @@
       <h3 id="typing-text" aria-live="polite"></h3>
     </div>
   </section>
+  </center>
 
   <main>
     <section aria-labelledby="about-title">
@@ -388,22 +463,24 @@
 
     <section aria-labelledby="stats-title">
       <h2 id="stats-title">Our Stats</h2>
-      <section class="stat-item" aria-label="Year Established">
-        <div class="stat-number">2015</div>
-        <div class="stat-label">Year Established</div>
-      </section>
-      <section class="stat-item" aria-label="Awards Won">
-        <div class="stat-number">16</div>
-        <div class="stat-label">Awards Won</div>
-      </section>
-      <section class="stat-item" aria-label="Active Members">
-        <div class="stat-number">25</div>
-        <div class="stat-label">Active Members</div>
-      </section>
-      <section class="stat-item" aria-label="Teams Mentored">
-        <div class="stat-number">10</div>
-        <div class="stat-label">Teams Mentored</div>
-      </section>
+    </section>
+
+    <!-- Stat items directly inside main for flex layout -->
+    <section class="stat-item" aria-label="Year Established" tabindex="0">
+      <div class="stat-number">2015</div>
+      <div class="stat-label">Year Established</div>
+    </section>
+    <section class="stat-item" aria-label="Awards Won" tabindex="0">
+      <div class="stat-number">16</div>
+      <div class="stat-label">Awards Won</div>
+    </section>
+    <section class="stat-item" aria-label="Active Members" tabindex="0">
+      <div class="stat-number">25</div>
+      <div class="stat-label">Active Members</div>
+    </section>
+    <section class="stat-item" aria-label="Teams Mentored" tabindex="0">
+      <div class="stat-number">10</div>
+      <div class="stat-label">Teams Mentored</div>
     </section>
 
     <section aria-labelledby="competitions-title">
@@ -446,109 +523,102 @@
       <div class="footer-section">
         <h3>Follow Us</h3>
         <div class="social-links" role="list">
-          <a href="https://instagram.com/royalrobotics5842" target="_blank" rel="noopener" aria-label="Instagram" role="listitem" tabindex="0">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zM12 7.25a4.75 4.75 0 110 9.5 4.75 4.75 0 010-9.5zM17.25 6a1 1 0 110 2 1 1 0 010-2z" /></svg>
+          <a href="https://www.facebook.com/rrhsroyalrobotics/" target="_blank" rel="noopener" aria-label="Facebook" role="listitem" tabindex="0">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 10-11.63 9.87v-6.98h-2.82v-2.9h2.82V9.84c0-2.78 1.65-4.32 4.17-4.32 1.2 0 2.46.21 2.46.21v2.7h-1.38c-1.36 0-1.78.85-1.78 1.72v2.06h3.04l-.49 2.9h-2.55v6.98A10 10 0 0022 12z"/></svg>
           </a>
-          <a href="https://facebook.com/royalrobotics5842" target="_blank" rel="noopener" aria-label="Facebook" role="listitem" tabindex="0">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 10-11.63 9.87v-6.98h-2.82v-2.9h2.82V9.84c0-2.78 1.65-4.32 4.17-4.32 1.2 0 2.46.22 2.46.22v2.7h-1.38c-1.36 0-1.78.85-1.78 1.72v2.07h3.03l-.48 2.9h-2.55v6.98A10 10 0 0022 12z" /></svg>
+          <a href="https://twitter.com/royalrobotics5842" target="_blank" rel="noopener" aria-label="Twitter" role="listitem" tabindex="0">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23 3a10.9 10.9 0 01-3.14.86A5.48 5.48 0 0022.4.37a10.66 10.66 0 01-3.3 1.26 5.48 5.48 0 00-9.3 5v1a15.6 15.6 0 01-11.33-5.7 5.48 5.48 0 001.69 7.34 5.37 5.37 0 01-2.48-.68v.06a5.48 5.48 0 004.41 5.37 5.48 5.48 0 01-2.46.1 5.48 5.48 0 005.12 3.8 10.95 10.95 0 01-6.75 2.33A11.09 11.09 0 011 19.54 15.43 15.43 0 008.29 21c9.3 0 14.4-7.7 14.4-14.4 0-.22 0-.43-.02-.64A10.33 10.33 0 0023 3z"/></svg>
           </a>
-          <a href="https://twitter.com/royalrobotics" target="_blank" rel="noopener" aria-label="Twitter" role="listitem" tabindex="0">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22.46 6c-.77.35-1.6.59-2.46.7a4.29 4.29 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04 4.28 4.28 0 00-
-            <path d="M22.46 6c-.77.35-1.6.59-2.46.7a4.29 4.29 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04 4.28 4.28 0 00-7.29 3.9 12.15 12.15 0 01-8.83-4.48 4.28 4.28 0 001.33 5.72 4.26 4.26 0 01-1.94-.54v.05a4.28 4.28 0 003.43 4.2 4.27 4.27 0 01-1.93.07 4.28 4.28 0 003.99 2.97A8.58 8.58 0 012 19.54a12.1 12.1 0 006.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.39-.01-.58A8.7 8.7 0 0022.46 6z"/>
-          </svg>
+          <a href="https://www.instagram.com/rrhsroyalrobotics/" target="_blank" rel="noopener" aria-label="Instagram" role="listitem" tabindex="0">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5a4.25 4.25 0 00-4.25 4.25v8.5a4.25 4.25 0 004.25 4.25h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.75-.75a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z"/></svg>
           </a>
         </div>
       </div>
-
-      <div class="footer-section">
-        <h3>Site Links</h3>
-        <ul>
-          <li><a href="#" tabindex="0">Home</a></li>
-          <li><a href="#" tabindex="0">Competitions</a></li>
-          <li><a href="#" tabindex="0">Accomplishments</a></li>
-          <li><a href="#" tabindex="0">Sponsors</a></li>
-          <li><a href="#" tabindex="0">Donate</a></li>
-          <li><a href="#" tabindex="0">Team</a></li>
-          <li><a href="#" tabindex="0">Contact</a></li>
-        </ul>
-      </div>
-
       <div class="footer-section footer-contact">
-        <h3>Contact</h3>
+        <h3>Contact Us</h3>
         <p>Email: <a href="mailto:rrhsroyalrobotics@gmail.com" tabindex="0">rrhsroyalrobotics@gmail.com</a></p>
-        <p>Address: River Ridge High School, 11646 Town Center Rd, New Port Richey, FL 34654</p>
+        <p>Address: 123 Royal Way, New Port Richey, FL</p>
+        <p>Made by Stelio K</p>
       </div>
     </div>
   </footer>
 
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.getElementById('primary-nav');
+    // Typing effect for hero subheading
+    const phrases = [
+      "Building Robots, Building Futures.",
+      "Innovation through Teamwork.",
+      "Engineering Excellence Since 2015.",
+      "STEM Leaders in Pasco County."
+    ];
+    const typingText = document.getElementById("typing-text");
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const delayBetweenPhrases = 2000;
 
-    function toggleMenu() {
-      if (nav.style.display === 'flex') {
-        nav.style.display = 'none';
-        menuToggle.classList.remove('active');
+    function type() {
+      const currentPhrase = phrases[phraseIndex];
+      if (isDeleting) {
+        charIndex--;
+        typingText.textContent = currentPhrase.substring(0, charIndex);
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(type, 500);
+        } else {
+          setTimeout(type, deletingSpeed);
+        }
       } else {
-        nav.style.display = 'flex';
-        menuToggle.classList.add('active');
+        charIndex++;
+        typingText.textContent = currentPhrase.substring(0, charIndex);
+        if (charIndex === currentPhrase.length) {
+          isDeleting = true;
+          setTimeout(type, delayBetweenPhrases);
+        } else {
+          setTimeout(type, typingSpeed);
+        }
       }
     }
+    type();
 
-    menuToggle.addEventListener('click', toggleMenu);
-    menuToggle.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
+    // Menu toggle logic
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("nav");
+
+    function toggleMenu() {
+      nav.classList.toggle("mobile-active");
+      menuToggle.classList.toggle("active");
+    }
+    menuToggle.addEventListener("click", toggleMenu);
+    menuToggle.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         toggleMenu();
       }
     });
 
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
-        nav.style.display = 'flex';
-        menuToggle.classList.remove('active');
-      } else {
-        nav.style.display = 'none';
+    // Close nav if click outside nav and menu toggle on mobile
+    document.addEventListener("click", (e) => {
+      if (
+        !nav.contains(e.target) &&
+        !menuToggle.contains(e.target) &&
+        nav.classList.contains("mobile-active")
+      ) {
+        toggleMenu();
       }
     });
 
-    const typingElement = document.getElementById('typing-text');
-    const quotes = [
-      "Building the Future",
-      "Innovate. Build. Compete.",
-      "Engineering the next generation.",
-      "Driven by passion and teamwork.",
-      "Robotics beyond the classroom."
-    ];
-
-    let quoteIndex = 0;
-    let charIndex = 0;
-    let typingSpeed = 100;
-    let deletingSpeed = 50;
-    let isDeleting = false;
-
-    function type() {
-      const currentQuote = quotes[quoteIndex];
-      if (!isDeleting) {
-        typingElement.textContent = currentQuote.substring(0, charIndex + 1);
-        charIndex++;
-        if (charIndex === currentQuote.length) {
-          isDeleting = true;
-          setTimeout(type, 1500);
-          return;
+    // Optional: Close menu on nav link click on mobile
+    nav.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", () => {
+        if (nav.classList.contains("mobile-active")) {
+          toggleMenu();
         }
-      } else {
-        typingElement.textContent = currentQuote.substring(0, charIndex - 1);
-        charIndex--;
-        if (charIndex === 0) {
-          isDeleting = false;
-          quoteIndex = (quoteIndex + 1) % quotes.length;
-        }
-      }
-      setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
-    }
-
-    type();
+      })
+    );
   </script>
 </body>
 </html>
