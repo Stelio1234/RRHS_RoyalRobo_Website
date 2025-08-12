@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Royal Robotics Competitions</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <div class="menu-toggle" onclick="document.querySelector('.mobile-nav').classList.toggle('show'); this.classList.toggle('active');">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="mobile-nav">
+    <a href="/">HOME</a>
+    <a href="/robocomp.html">ROBOTICS COMPETITIONS</a>
+    <a href="/Accomplishments">ACCOMPLISHMENTS</a>
+    <a href="/sponsors">OUR SPONSORS</a>
+    <a href="/Donate">DONATE</a>
+    <div class="mobile-dropdown">
+      <button class="mobile-dropbtn" onclick="this.nextElementSibling.classList.toggle('show');">More &#x25BC;</button>
+      <div class="mobile-dropdown-content">
+        <a href="/team">Team</a>
+        <a href="/events">Events</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="/">HOME</a></li>
+      <li><a href="/robocomp.html">ROBOTICS COMPETITIONS</a></li>
+      <li><a href="/Accomplishments">ACCOMPLISHMENTS</a></li>
+      <li><a href="/sponsors">OUR SPONSORS</a></li>
+      <li><a href="/Donate">DONATE</a></li>
+      <li class="dropdown">
+        <a class="dropbtn">More &#x25BC;</a>
+        <ul class="dropdown-content">
+          <li><a href="/team">Team</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <header class="header-img">
+    <h1>ROYAL ROBOTICS</h1>
+    <h2>TALLAHASSEE & ORLANDO REGIONAL 2025</h2>
+  </header>
+
+  <main class="container">
+    <p>Royal Robotics competed in FIRST robotics regional events held in Tallahassee and Orlando during their spring break week. The first competition in Tallahassee saw the students work through technical challenges, ultimately fielding a robot that was very competitive. The team was selected for the tournament and finished in <strong>6th place</strong> in a field of 42 teams.</p>
+    <p>The team further improved their robot in the more competitive Orlando regional; perfecting their camera-based scoring guidance system for both autonomous and student driven game play. They finished in <strong>8th place</strong> in a field of 61 teams.</p>
+    <p>Our robot <strong>Abyss</strong> performed well scoring on both the coral reef and the algae barge using cutting edge technology. It utilized advanced features like AprilTag vision for precise localization, a holonomic drive system for agile movement in any direction, and sensor fusion to optimize real-time decision-making. These innovations powered their autonomous routines, allowing them to navigate the field with accuracy and efficiency. The team’s ability to blend mechanical precision with software intelligence stood out throughout the competition and earned them a spot among the top-performing teams.</p>
+    <p><em>Check out this video of one of our exciting winning qualification matches in Orlando.</em></p>
+    <div class="team-images">
+      <img src="/images/IMG_5646 (1).jpg" alt="Match Action">
+      <img src="/images/IMG_5369_Original.JPG" alt="Team Abyss Robot">
+    </div>
+  </main>
+
+  <main class="container">
+    <h2>ORLANDO REGIONAL 2024</h2>
+    <p>At the FIRST Robotics Orlando Competition, Royal Robotics placed <strong>3rd</strong> with their robot the <strong>Royal Bard</strong>. The team went through the entire competition with only 1 loss. This was possible due to the robot's ability to quickly and efficiently pick up game pieces from the floor and consistently score them in the main goal.</p>
+    <p>The team also created an ingenious way to climb on the chain very fast and consistent allowing them to gain points. Royal Bard also had holonomic driving capabilities, allowing it to quickly move on the field while avoiding obstructions. With proportional-integrated-derivative (PID) and feedback tuning, Royal Bard's arm quickly moved to the same place every time while also running many simultaneous actions. These include spinning the wheels to shoot, using cameras on the robot to update its odometer, and auto align the arm using QR codes posted around the field. Royal Robotics became captains for the 3rd place team in the elimination tournament that concludes the competition.</p>
+    <div class="team-images">
+      <img src="/images/432773220_819759913520663_5415101700049548126_n.jpg" alt="Royal Bard">
+      <img src="/images/2024-03-09 18.49.57.jpg" alt="Competition Field">
+      <img src="/images/IMG_1220.jpg" alt="Team Photo">
+    </div>
+  </main>
+
+  <main class="container">
+    <h2>OFF-SEASON COMPETITIONS</h2>
+    <p>During our FIRST Robotics Competition off season, our Royal Robotics Team participates in the VEX Robotics Competition and the Roboticon Tampa Bay Competition.</p>
+    <div class="team-images">
+      <img src="/images/1fb770e01037250f2fab9525d9ef4676.webp" alt="Roboticon">
+      <img src="/images/Roboticon_edited.jpg" alt="Roboticon Setup">
+      <img src="/images/vex bots.jpg" alt="VEX Bots">
+      <img src="/images/122205219_IMG_2620.jpeg" alt="VEX Build">
+      <img src="/images/2024-05-10 16.16.54.jpg" alt="VEX Robot">
+      <img src="/images/53264503864_5fe08771ba_4k.jpg" alt="Close-up">
+    </div>
+  </main>
+
+  <script>
+    // Fade in on scroll (optional JS enhancement)
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

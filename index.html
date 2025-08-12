@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RRHS Royal Robotics | FRC Team 5842</title>
+  <style>
+ /* --- Reset and base --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #100a33; /* rich dark navy */
+  color: #fff; /* make most text white */
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+a {
+  color: #8a62ff; /* distinct purple links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover,
+a:focus {
+  color: #b085ff;
+  outline: none;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  position: relative;
+  padding: 8rem 2rem 8rem; /* more top padding without image */
+  text-align: center;
+  color: #dedcff; /* keep hero text purple */
+  user-select: none;
+  height: auto; /* no fixed height */
+  overflow: visible;
+  filter: none; /* no brightness filter needed */
+  background-color:  #100a33;
+  border: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.6rem;
+  color: #a381ff; /* distinct purple */
+}
+
+/* Removed .hero-image CSS */
+
+/* Removed hero overlay */
+.hero::before {
+  content: none;
+}
+
+/* --- HEADER --- */
+header {
+  background: linear-gradient(90deg, #3a1f92, #5739bd);
+  padding: 1.5rem 2rem;
+  border: #100a33;
+  border-width: 1px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  color: #fff; /* header text white */
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: #e5e5ff; /* bright white-ish */
+  letter-spacing: 2px;
+  user-select: none;
+  cursor: default;
+}
+nav {
+  display: flex;
+  gap: 2rem;
+}
+nav a {
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  position: relative;
+  color: #dcdcff; /* soft white with purple tint */
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #b08fff;
+  transition: 0.3s ease width;
+}
+nav a:hover,
+nav a:focus {
+  color: #b085ff;
+}
+nav a:hover::after,
+nav a:focus::after {
+  width: 100%;
+}
+
+/* Mobile hamburger menu */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 24px;
+  height: 18px;
+  justify-content: space-between;
+}
+.menu-toggle span {
+  height: 3px;
+  background: #b08fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* --- MAIN CONTENT --- */
+main {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  flex-grow: 1;
+}
+section {
+  background-color: #2d2780;
+  border-radius: 6px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  color: #fff; /* white text here */
+  transition: box-shadow 0.3s ease;
+}
+section h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #ddd; /* slightly off-white for headings */
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+section p {
+  font-weight: 500;
+  font-size: 1.1rem;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: #eee; /* light white text */
+}
+
+/* --- FOOTER --- */
+footer {
+  background: #3b2a9b;
+  color: #e8e2ff; /* bright white-ish */
+  padding: 3rem 2rem;
+  user-select: none;
+}
+footer .footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-section {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+.footer-section h3 {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #cdc5ff;
+  letter-spacing: 0.08em;
+}
+.footer-section ul {
+  list-style: none;
+}
+.footer-section ul li {
+  margin-bottom: 0.7rem;
+}
+.footer-section ul li a {
+  color: #dbd4ff;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.25s ease;
+}
+.footer-section ul li a:hover,
+.footer-section ul li a:focus {
+  color: #f0ebff;
+  outline: none;
+}
+.footer-contact p {
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+}
+
+/* Social Icons inline */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.social-links a {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  color: #dbd4ff;
+  transition: color 0.3s ease;
+}
+.social-links a:hover,
+.social-links a:focus {
+  color: #f0ebff;
+  outline: none;
+}
+.social-links svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+  nav.mobile-active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 2rem;
+    background-color: #5739bdcc;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    z-index: 1200;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .container {
+    position: relative;
+  }
+  footer .footer-container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+}
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: clamp(1.8rem, 10vw, 2.5rem);
+  }
+  section {
+    padding: 1.4rem 1rem;
+  }
+}
+
+#typing-text {
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-weight: 600;
+  color: #b085ff; /* a nice purple to match your theme */
+  min-height: 2.5rem; /* reserve vertical space to avoid layout shift during typing */
+  margin-top: 0.6rem;
+  user-select: none;
+  font-family: 'Courier New', Courier, monospace; /* classic typing vibe */
+}
+
+#typing-text::after {
+  content: '|';
+  animation: blink 1s steps(2, start) infinite;
+  margin-left: 2px;
+  color: #b085ff;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #100a33;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #8a62ff;
+  border-radius: 6px;
+  border: 3px solid #100a33;
+  transition: background-color 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #b085ff;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #8a62ff #100a33;
+}
+
+  </style>
+
+
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo" aria-label="RRHS Royal Robotics">RRHS Royal Robotics</div>
+      <nav role="navigation" aria-label="Primary Navigation" id="primary-nav">
+        <a href="#" tabindex="0">Home</a>
+        <a href="#" tabindex="0">Competitions</a>
+        <a href="#" tabindex="0">Accomplishments</a>
+        <a href="#" tabindex="0">Sponsors</a>
+        <a href="#" tabindex="0">Donate</a>
+        <a href="#" tabindex="0">Team</a>
+        <a href="#" tabindex="0">Contact</a>
+      </nav>
+      <div class="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Welcome section">
+  <!-- Removed hero image here -->
+  <div class="hero-content">
+    <h1>RRHS Royal Robotics</h1>
+    <h2>5842</h2>
+    <h3 id="typing-text" aria-live="polite"></h3>
+  </div>
+</section>
+
+  <main>
+    <section aria-labelledby="about-title">
+      <h2 id="about-title">About Us</h2>
+      <p>
+        River Ridge High School's Royal Robotics team is dedicated to inspiring the next generation of engineers, programmers, and innovators. Since 2015, we've competed in the FIRST Robotics Competition with passion, teamwork, and excellence.
+      </p>
+    </section>
+
+    <section aria-labelledby="mission-title">
+      <h2 id="mission-title">Our Mission</h2>
+      <p>
+        To empower students through hands-on robotics challenges, foster STEM education, and build leaders who create meaningful impact in their communities and beyond.
+      </p>
+    </section>
+  </main>
+
+  <footer aria-label="Site Footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links" role="list">
+          <a href="https://instagram.com/royalrobotics5842" target="_blank" rel="noopener" aria-label="Instagram" role="listitem" tabindex="0">
+            <!-- Instagram SVG icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zM12 7.25a4.75 4.75 0 110 9.5 4.75 4.75 0 010-9.5zM17.25 6a1 1 0 110 2 1 1 0 010-2z" />
+            </svg>
+          </a>
+          <a href="https://facebook.com/royalrobotics5842" target="_blank" rel="noopener" aria-label="Facebook" role="listitem" tabindex="0">
+            <!-- Facebook SVG icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M22 12a10 10 0 10-11.63 9.87v-6.98h-2.82v-2.9h2.82V9.84c0-2.78 1.65-4.32 4.17-4.32 1.2 0 2.46.22 2.46.22v2.7h-1.38c-1.36 0-1.78.85-1.78 1.72v2.07h3.03l-.48 2.9h-2.55v6.98A10 10 0 0022 12z" />
+            </svg>
+          </a>
+          <a href="https://twitter.com/royalrobotics" target="_blank" rel="noopener" aria-label="Twitter" role="listitem" tabindex="0">
+            <!-- Twitter SVG icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M22.46 6c-.77.35-1.6.59-2.46.7a4.29 4.29 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04 4.28 4.28 0 00-7.29 3.9 12.15 12.15 0 01-8.83-4.48 4.28 4.28 0 001.33 5.72 4.26 4.26 0 01-1.94-.54v.05a4.28 4.28 0 003.43 4.2 4.27 4.27 0 01-1.93.07 4.28 4.28 0 003.99 2.97A8.58 8.58 0 012 19.54a12.1 12.1 0 006.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.39-.01-.58A8.7 8.7 0 0022.46 6z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Site Links</h3>
+        <ul>
+          <li><a href="#" tabindex="0">Home</a></li>
+          <li><a href="#" tabindex="0">Competitions</a></li>
+          <li><a href="#" tabindex="0">Accomplishments</a></li>
+          <li><a href="#" tabindex="0">Sponsors</a></li>
+          <li><a href="#" tabindex="0">Donate</a></li>
+          <li><a href="#" tabindex="0">Team</a></li>
+          <li><a href="#" tabindex="0">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section footer-contact">
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:rrhsroyalrobotics@gmail.com" tabindex="0">rrhsroyalrobotics@gmail.com</a></p>
+        <p>Phone: (727) 774-7200</p>
+        <p>Address: River Ridge High School, 11646 Town Center Rd, New Port Richey, FL 34654</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('primary-nav');
+
+    function toggleMenu() {
+      if (nav.style.display === 'flex') {
+        nav.style.display = 'none';
+        menuToggle.classList.remove('active');
+      } else {
+        nav.style.display = 'flex';
+        menuToggle.classList.add('active');
+      }
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+    menuToggle.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    // Hide menu on resize if larger screen
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        nav.style.display = 'flex';
+        menuToggle.classList.remove('active');
+      } else {
+        nav.style.display = 'none';
+      }
+    });
+
+    const typingElement = document.getElementById('typing-text');
+    const quotes = [
+      "Building the Future",
+      "Innovate. Build. Compete.",
+      "Engineering the next generation.",
+      "Driven by passion and teamwork.",
+      "Robotics beyond the classroom."
+    ];
+
+    let quoteIndex = 0;
+    let charIndex = 0;
+    let typingSpeed = 100;
+    let deletingSpeed = 50;
+    let isDeleting = false;
+
+    function type() {
+      const currentQuote = quotes[quoteIndex];
+      if (!isDeleting) {
+        typingElement.textContent = currentQuote.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === currentQuote.length) {
+          isDeleting = true;
+          setTimeout(type, 1500); // Pause before deleting
+          return;
+        }
+      } else {
+        typingElement.textContent = currentQuote.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          quoteIndex = (quoteIndex + 1) % quotes.length;
+        }
+      }
+      setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    }
+
+    type();
+
+  </script>
+</body>
+</html>

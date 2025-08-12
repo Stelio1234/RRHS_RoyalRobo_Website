@@ -1,0 +1,27 @@
+ <section class="section-container fade-in first-info">
+    <h2>The River Ridge Royal Robotics team is a dynamic group of young men and women working together to meet team goals, which are:</h2>
+    <ul>
+      <li>To develop skills and experiences that will prepare them for college and their careers.</li>
+      <li>To promote appreciation for Science, Technology, Engineering, and Mathematics (STEM).</li>
+    </ul>
+    <p>Through participation in Royal Robotics, students are able to:</p>
+    <ul>
+      <li>Develop critical thinking and trouble-shooting abilities</li>
+      <li>Practice STEM skills</li>
+      <li>Learn leadership, communication, and collaboration skills</li>
+      <li>Gain engineering experience and have hands-on practice building/programming robots</li>
+      <li>Compete in FIRST Robotics Competitions throughout Florida and the United States</li>
+      <li>Increase college and career opportunities</li>
+      <li>Participate in community outreach activities</li>
+    </ul>
+    </section>
+
+
+    <div class="team-images">
+      <img src="2025-02-03 15.26.36.jpg" alt="Building 2025 ABYSS Robot" />
+      <p>Building our 2025 ABYSS robot for upcoming FIRST Robotics Competitions. Team advisor and mentor collaborating with students on the left. Team members working on the build on the right.</p>
+      <img src="2025-03-12 15.59.07.jpg" alt="Team Work Image" />
+      <p>Image by John Doyle</p>
+    </div>
+
+    
