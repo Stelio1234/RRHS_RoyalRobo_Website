@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RRHS Royal Robotics | FRC Team 5842</title>
+  
   <style>
   /* Reset & base */
 *,
@@ -258,7 +259,7 @@ ul li {
   margin-bottom: 0.4rem;
 }
 
-/* Stats Items */
+
 .stat-item {
   background-color: #3a2f90;
   padding: 1.5rem 1.2rem;
@@ -419,15 +420,15 @@ footer {
   padding: 10px 0;
 }
 
-/* Moving track */
+
 .logo-carousel-track {
   display: flex;
   animation: scrollLogos 15s linear infinite;
-  width: 200%; /* doubled width to fit two sets of logos side-by-side */
+  width: 200%; 
   will-change: transform;
 }
 
-/* Each logo */
+
 .logo-carousel img {
   height: 60px;
   margin: 0 25px;
@@ -448,16 +449,13 @@ footer {
   }
 }
 
-/* Responsive */
-
-/* Tablets */
 @media (max-width: 1024px) {
   main {
     max-width: 95%;
   }
 }
 
-/* Mobile */
+
 @media (max-width: 768px) {
   nav {
     display: flex !important;
@@ -550,14 +548,31 @@ footer {
     </div>
   </header>
   <center>
-  <section class="hero" aria-label="Welcome section">
-    <div class="hero-content">
+  <section class="hero" aria-label="Welcome section" style="
+    margin-top: auto;
+    padding: 60px 20px 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 500px; /* fixed height */
+    gap: 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                url('/images/Teamphoto.avif') no-repeat center center/cover;
+    overflow: hidden;
+    pointer-events: none; /* disables hover/click effects */
+  ">
+    <div class="hero-content" style="height: 150px; display: flex; flex-direction: column; justify-content: center; pointer-events: auto;">
       <h1>RRHS Royal Robotics</h1>
       <h2>5842</h2>
-      <h3 id="typing-text" aria-live="polite"></h3>
+      <h3 id="typing-text" aria-live="polite" style="min-height: 1.2em;"></h3>
     </div>
   </section>
-  </center>
+</center>
+
+
 
   <main>
     <section aria-labelledby="about-title">
@@ -578,8 +593,6 @@ footer {
       <h2 id="stats-title">Community Outreach</h2>
       <p>placeholder</p>
     </section>
-
-    <!-- Stat items directly inside main for flex layout -->
     <section class="stat-item" aria-label="Year Established" tabindex="0">
       <div class="stat-number">2015</div>
       <div class="stat-label">Year Established</div>
