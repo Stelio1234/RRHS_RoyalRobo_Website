@@ -6,528 +6,506 @@
   <title>RRHS Royal Robotics | FRC Team 5842</title>
   
   <style>
-  /* Reset & base */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  overflow-x: hidden; /* Prevent horizontal scroll globally */
-  scroll-behavior: smooth;
-  width: 100%;
-  min-height: 100vh;
-  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #100a33;
-  color: #fff;
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Custom scrollbar */
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #8a62ff #100a33;
-}
-
-/* WebKit */
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-::-webkit-scrollbar-track {
-  background: #100a33;
-  border-radius: 6px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #8a62ff;
-  border-radius: 6px;
-  border: 3px solid #100a33;
-  transition: background-color 0.3s ease;
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: #b085ff;
-}
-
-/* Links */
-a {
-  color: #8a62ff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-a:hover,
-a:focus {
-  color: #b085ff;
-  outline: none;
-}
-
-/* Header */
-header {
-  background: linear-gradient(90deg, #3a1f92, #5739bd);
-  padding: 1.5rem 2rem;
-  border: 1px solid #000;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  color: #fff;
-}
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-
-.logo {
-  font-weight: 800;
-  font-size: 1.8rem;
-  color: #e5e5ff;
-  letter-spacing: 2px;
-  user-select: none;
-  cursor: default;
-}
-
-/* Navigation */
-nav {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-nav a {
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.5rem 0;
-  position: relative;
-  color: #dcdcff;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: #b08fff;
-  transition: width 0.3s ease;
-}
-
-nav a:hover,
-nav a:focus {
-  color: #b085ff;
-}
-
-nav a:hover::after,
-nav a:focus::after {
-  width: 100%;
-}
-
-/* Hamburger Menu */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  width: 28px;
-  height: 22px;
-  justify-content: space-between;
-  flex-shrink: 0;
-  z-index: 1300;
-  transition: transform 0.3s ease;
-}
-
-.menu-toggle span {
-  height: 3.5px;
-  background: #b08fff;
-  border-radius: 3px;
-  transition: all 0.3s ease;
-  transform-origin: center;
-}
-
-.menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Hero Section */
-.hero {
-  display: flex;
-  justify-content: center;
-  padding: 8rem 2rem;
-  text-align: center;
-  color: #dedcff;
-  user-select: none;
-  background-color: #100a33;
-}
-
-.hero-content {
-  max-width: 1100px;
-  width: 100%;
-  padding: 0 1rem;
-}
-
-.hero h1 {
-  font-size: clamp(2.5rem, 8vw, 4rem);
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  margin-bottom: 0.6rem;
-  color: #a381ff;
-}
-
-.hero h2 {
-  font-weight: 700;
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  margin-bottom: 0.8rem;
-  color: #b085ff;
-  user-select: none;
-}
-
-/* Main content */
-main {
-  max-width: 1100px;
-  margin: 2.5rem auto 4rem;
-  padding: 0 1.5rem;
-  flex-grow: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-/* Sections */
-section {
-  background-color: #2d2780;
-  border-radius: 6px;
-  padding: 2rem;
-  margin-bottom: 3rem;
-  color: #fff;
-  transition: background-color 0.3s ease;
-  flex: 1 1 300px;
-  max-width: 700px;
-  outline-offset: 2px;
-}
-
-section:hover,
-section:focus-within {
-  background-color: #3a2f90;
-  outline: 3px solid #b085ff; /* visible focus for accessibility */
-}
-
-/* Section headings */
-section h2 {
-  font-weight: 700;
-  font-size: 2rem;
-  color: #ddd;
-  margin-bottom: 1rem;
-  letter-spacing: 0.1em;
-  user-select: none;
-}
-
-/* Paragraphs and lists */
-section p,
-ul {
-  font-weight: 500;
-  font-size: 1.1rem;
-  max-width: 760px;
-  margin: 0 auto;
-  line-height: 1.7;
-  color: #eee;
-}
-
-ul {
-  padding-left: 1.3rem;
-  color: #eee;
-}
-
-ul li {
-  margin-bottom: 0.4rem;
-}
-
-
-.stat-item {
-  background-color: #3a2f90;
-  padding: 1.5rem 1.2rem;
-  border-radius: 8px;
-  text-align: center;
-  user-select: none;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgb(58 47 144 / 0.3);
-  flex: 1 1 200px;
-  max-width: 250px;
-  margin: 0;
-}
-
-.stat-item:hover,
-.stat-item:focus-within {
-  background-color: #4b3fbd;
-  outline: 3px solid #b085ff;
-  box-shadow: 0 6px 14px rgb(75 63 189 / 0.5);
-}
-
-/* Stat numbers & labels */
-.stat-number {
-  font-size: 3rem;
-  font-weight: 900;
-  color: #a381ff;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.3rem;
-  user-select: text;
-}
-
-.stat-label {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #ddd;
-  user-select: none;
-}
-
-/* Footer */
-footer {
-  background: #3b2a9b;
-  color: #e8e2ff;
-  padding: 3rem 2rem;
-  user-select: none;
-}
-
-.footer-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.footer-section {
-  flex: 1 1 220px;
-  min-width: 200px;
-}
-
-.footer-section h3 {
-  font-weight: 700;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: #cdc5ff;
-  letter-spacing: 0.08em;
-}
-
-.footer-section ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.footer-section ul li {
-  margin-bottom: 0.7rem;
-}
-
-.footer-section ul li a {
-  color: #dbd4ff;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: color 0.25s ease;
-}
-
-.footer-section ul li a:hover,
-.footer-section ul li a:focus {
-  color: #f0ebff;
-  outline: none;
-}
-
-.footer-contact p {
-  margin-bottom: 0.6rem;
-  font-size: 1rem;
-}
-
-/* Social links */
-.social-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.social-links a {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  color: #dbd4ff;
-  transition: color 0.3s ease;
-}
-
-.social-links a:hover,
-.social-links a:focus {
-  color: #f0ebff;
-  outline: none;
-}
-
-.social-links svg {
-  width: 100%;
-  height: 100%;
-  fill: currentColor;
-}
-
-/* Typing text */
-#typing-text {
-  font-size: clamp(1.2rem, 4vw, 2rem);
-  font-weight: 600;
-  color: #b085ff;
-  min-height: 2.5rem;
-  margin-top: 0.6rem;
-  user-select: none;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-#typing-text::after {
-  content: '|';
-  animation: blink 1s steps(2, start) infinite;
-  margin-left: 2px;
-  color: #b085ff;
-}
-
-@keyframes blink {
-  0%, 50% {
-    opacity: 1;
-  }
-  50.01%, 100% {
-    opacity: 0;
-  }
-}
-
-/* Logo carousel container */
-.logo-carousel {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
-  position: relative;
-  background: transparent;
-  padding: 10px 0;
-}
-
-
-.logo-carousel-track {
-  display: flex;
-  animation: scrollLogos 15s linear infinite;
-  width: 200%; 
-  will-change: transform;
-}
-
-
-.logo-carousel img {
-  height: 60px;
-  margin: 0 25px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.logo-carousel img:hover {
-  transform: scale(1.1);
-}
-
-@keyframes scrollLogos {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@media (max-width: 1024px) {
-  main {
-    max-width: 95%;
-  }
-}
-
-
-@media (max-width: 768px) {
-  nav {
-    display: flex !important;
-    flex-direction: column;
-    position: absolute;
-    top: 56px;
-    right: 1.5rem;
-    background-color: #5739bddd;
-    padding: 1rem 1.75rem;
-    border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    width: 220px;
-    transform: translateX(110%);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 1200;
-  }
-
-  nav.mobile-active {
-    transform: translateX(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  footer .footer-container {
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  section {
-    max-width: 100%;
-    flex: 1 1 100%;
-    margin-bottom: 2rem;
-  }
-
-  .stat-item {
-    max-width: 100%;
-    flex-basis: auto;
-    margin: 0 auto 1rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(1.8rem, 10vw, 2.5rem);
-  }
-
-  .hero h2 {
-    font-size: clamp(1.3rem, 8vw, 1.8rem);
-  }
-
-  main {
-    padding: 0 1rem;
-    margin: 2rem auto 3rem;
-  }
-}
-
-/* Small phones */
-@media (max-width: 480px) {
-  section p,
-  ul {
-    font-size: 1rem;
-  }
-  ul {
-    padding-left: 1rem;
-  }
-}
-</style>
+    /* Reset & base */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #100a33;
+      color: #fff;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Custom scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #8a62ff #100a33;
+    }
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #100a33;
+      border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #8a62ff;
+      border-radius: 6px;
+      border: 3px solid #100a33;
+      transition: background-color 0.3s ease;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #b085ff;
+    }
+
+    /* Links */
+    a {
+      color: #8a62ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover,
+    a:focus {
+      color: #b085ff;
+      outline: none;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #3a1f92, #5739bd);
+      padding: 1.5rem 2rem;
+      border: 1px solid #000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: #e5e5ff;
+      letter-spacing: 2px;
+      user-select: none;
+      cursor: default;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    nav a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      color: #dcdcff;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #b08fff;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+    }
+
+    /* Hamburger Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 28px;
+      height: 22px;
+      justify-content: space-between;
+      flex-shrink: 0;
+      z-index: 1300;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle span {
+      height: 3.5px;
+      background: #b08fff;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8rem 2rem;
+      text-align: center;
+      color: #dedcff;
+      user-select: none;
+      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                  url('/images/Teamphoto.avif') no-repeat center center/cover;
+      width: 100%;
+      height: 500px; /* fixed height */
+      gap: 20px;
+    }
+
+    .hero-content {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.6rem;
+      color: #a381ff;
+    }
+
+    .hero h2 {
+      font-weight: 700;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin-bottom: 0.8rem;
+      color: #b085ff;
+    }
+
+    /* Typing text */
+    #typing-text {
+      display: inline-block;
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-weight: 600;
+      color: #b085ff;
+      height: 2.5rem; /* fixes resizing */
+      margin-top: 0.6rem;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    #typing-text::after {
+      content: '|';
+      animation: blink 1s steps(2, start) infinite;
+      margin-left: 2px;
+      color: #b085ff;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+
+    /* Main content */
+    main {
+      max-width: 1100px;
+      margin: 2.5rem auto 4rem;
+      padding: 0 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    section {
+      background-color: #2d2780;
+      border-radius: 6px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      color: #fff;
+      transition: background-color 0.3s ease;
+      flex: 1 1 300px;
+      max-width: 700px;
+      outline-offset: 2px;
+    }
+
+    section:hover,
+    section:focus-within {
+      background-color: #3a2f90;
+      outline: 3px solid #b085ff;
+    }
+
+    section h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      color: #ddd;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    section p,
+    ul {
+      font-weight: 500;
+      font-size: 1.1rem;
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.7;
+      color: #eee;
+    }
+
+    ul {
+      padding-left: 1.3rem;
+    }
+
+    ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Stats items */
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 3rem;
+    }
+
+    .stat-item {
+      background-color: #3a2f90;
+      padding: 1.5rem 1.2rem;
+      border-radius: 8px;
+      text-align: center;
+      user-select: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgb(58 47 144 / 0.3);
+      flex: 1 1 200px;
+      max-width: 250px;
+    }
+
+    .stat-item:hover,
+    .stat-item:focus-within {
+      background-color: #4b3fbd;
+      outline: 3px solid #b085ff;
+      box-shadow: 0 6px 14px rgb(75 63 189 / 0.5);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #a381ff;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #ddd;
+    }
+
+    /* FIRST Info box */
+    .first-info {
+      background-color: #3a2f90;
+      padding: 1.5rem 1.2rem;
+      border-radius: 8px;
+      text-align: left;
+      user-select: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgb(58 47 144 / 0.3);
+      flex: 1 1 100%;
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+      color: #eee;
+    }
+
+    .first-info h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #ddd;
+    }
+
+    .first-info ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+    }
+
+    /* Logo carousel */
+    .logo-carousel {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      position: relative;
+      background: transparent;
+      padding: 10px 0;
+      margin-bottom: 3rem;
+    }
+
+    .logo-carousel-track {
+      display: flex;
+      animation: scrollLogos 15s linear infinite;
+      width: 200%;
+      will-change: transform;
+    }
+
+    .logo-carousel img {
+      height: 60px;
+      width: auto;
+      margin: 0 25px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-carousel img:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes scrollLogos {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Footer */
+    footer {
+      background: #3b2a9b;
+      color: #e8e2ff;
+      padding: 3rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-section {
+      flex: 1 1 220px;
+      min-width: 200px;
+    }
+
+    .footer-section h3 {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #cdc5ff;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-section ul li a {
+      color: #dbd4ff;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .footer-section ul li a:hover,
+    .footer-section ul li a:focus {
+      color: #f0ebff;
+      outline: none;
+    }
+
+    .footer-contact p {
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      color: #dbd4ff;
+    }
+
+    .social-links a:hover,
+    .social-links a:focus {
+      color: #f0ebff;
+      outline: none;
+    }
+
+    .social-links svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      main { max-width: 95%; }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 56px;
+        right: 1.5rem;
+        background-color: #5739bddd;
+        padding: 1rem 1.75rem;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        width: 220px;
+        transform: translateX(110%);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1200;
+      }
+      nav.mobile-active {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .menu-toggle { display: flex; }
+      footer .footer-container { flex-direction: column; gap: 3rem; }
+      section { max-width: 100%; flex: 1 1 100%; margin-bottom: 2rem; }
+      .stat-item { max-width: 100%; flex-basis: auto; margin: 0 auto 1rem; }
+      .hero h1 { font-size: clamp(1.8rem, 10vw, 2.5rem); }
+      .hero h2 { font-size: clamp(1.3rem, 8vw, 1.8rem); }
+      main { padding: 0 1rem; margin: 2rem auto 3rem; }
+    }
+
+    @media (max-width: 480px) {
+      section p,
+      ul { font-size: 1rem; }
+      ul { padding-left: 1rem; }
+    }
+
+  </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
     <div class="container">
       <div class="logo" aria-label="RRHS Royal Robotics">RRHS Royal Robotics</div>
@@ -547,35 +525,21 @@ footer {
       </div>
     </div>
   </header>
-  <center>
-  <section class="hero" aria-label="Welcome section" style="
-    margin-top: auto;
-    padding: 60px 20px 80px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 500px; /* fixed height */
-    gap: 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
-                url('RRHS_RoyalRobo_Website
-/images/') no-repeat center center/cover;
-    overflow: hidden;
-    pointer-events: none; /* disables hover/click effects */
-  ">
-    <div class="hero-content" style="height: 150px; display: flex; flex-direction: column; justify-content: center; pointer-events: auto;">
+
+  <!-- Hero Section -->
+   <center>
+    <section class="hero" aria-label="Welcome section">
+    <div class="hero-content">
       <h1>RRHS Royal Robotics</h1>
       <h2>5842</h2>
-      <h3 id="typing-text" aria-live="polite" style="min-height: 1.2em;"></h3>
+      <h3 id="typing-text" aria-live="polite"></h3>
     </div>
-  </section>
-</center>
+  </section></center>
 
-
-
+  <!-- Main Content -->
   <main>
+
+    <!-- About -->
     <section aria-labelledby="about-title">
       <h2 id="about-title">About Us</h2>
       <p>
@@ -583,6 +547,7 @@ footer {
       </p>
     </section>
 
+    <!-- Mission -->
     <section aria-labelledby="mission-title">
       <h2 id="mission-title">Our Mission</h2>
       <p>
@@ -590,62 +555,52 @@ footer {
       </p>
     </section>
 
+    <!-- Community Outreach -->
     <section aria-labelledby="stats-title">
       <h2 id="stats-title">Community Outreach</h2>
       <p>placeholder</p>
     </section>
-    <section class="stat-item" aria-label="Year Established" tabindex="0">
-      <div class="stat-number">2015</div>
-      <div class="stat-label">Year Established</div>
-    </section>
-    <section class="stat-item" aria-label="Awards Won" tabindex="0">
-      <div class="stat-number">16</div>
-      <div class="stat-label">Awards Won</div>
-    </section>
-    <section class="stat-item" aria-label="Active Members" tabindex="0">
-      <div class="stat-number">25</div>
-      <div class="stat-label">Active Members</div>
-    </section>
-    <section class="stat-item" aria-label="Teams Mentored" tabindex="0">
-      <div class="stat-number">10</div>
-      <div class="stat-label">Teams Mentored</div>
-    </section>
 
+    <!-- Stats -->
+    <div class="stats-container">
+      <section class="stat-item" aria-label="Year Established" tabindex="0">
+        <div class="stat-number">2015</div>
+        <div class="stat-label">Year Established</div>
+      </section>
+      <section class="stat-item" aria-label="Awards Won" tabindex="0">
+        <div class="stat-number">16</div>
+        <div class="stat-label">Awards Won</div>
+      </section>
+      <section class="stat-item" aria-label="Active Members" tabindex="0">
+        <div class="stat-number">25</div>
+        <div class="stat-label">Active Members</div>
+      </section>
+      <section class="stat-item" aria-label="Teams Mentored" tabindex="0">
+        <div class="stat-number">10</div>
+        <div class="stat-label">Teams Mentored</div>
+      </section>
+    </div>
+
+    <!-- Competitions -->
     <section aria-labelledby="competitions-title">
       <h2 id="competitions-title">Competitions</h2>
       <p>
-        We regularly participate in regional and national FIRST Robotics Competitions, showcasing our innovative robot designs and strategic gameplay. Our recent events include:
+        Our team competes in multiple FRC events each season, consistently aiming for excellence in design, programming, and strategy. We also engage in off-season events to improve skills and mentor younger teams.
       </p>
+    </section>
+
+    <!-- FIRST Info -->
+    <section class="first-info" aria-labelledby="first-info-title">
+      <h2 id="first-info-title">What is FIRST?</h2>
       <ul>
-        <li>2023 Florida Regional - Finalists</li>
-        <li>2023 St. Louis Championship - Quarterfinalists</li>
-        <li>2022 State Championship - Semifinalists</li>
-        <li>2021 State Championship - Winners</li>
+        <li>Founded in 1989 by inventor Dean Kamen, FIRST (For Inspiration and Recognition of Science and Technology) aims to inspire young people to be science and technology leaders.</li>
+        <li>It includes multiple programs such as FRC, FTC, FLL, and JFLL to accommodate different age groups.</li>
+        <li>Teams work together to solve real-world challenges using robotics while learning STEM, teamwork, and leadership.</li>
       </ul>
     </section>
 
-    <section aria-labelledby="sponsors-title">
-      <h2 id="sponsors-title">Sponsors</h2>
-      <p>
-        We are proud to be supported by local businesses and organizations that believe in STEM education. Their generosity helps us with equipment, travel, and educational opportunities.
-      </p>
-      <ul>
-        <li>Tech Innovators Inc.</li>
-        <li>Global Engineering Solutions</li>
-        <li>New Port Richey STEM Foundation</li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="get-involved-title">
-      <h2 id="get-involved-title">Get Involved</h2>
-      <p>
-        Interested in joining the team or supporting us? We welcome new members and volunteers. Attend our next meeting or contact us for more information.
-      </p>
-      <p>Email: <a href="mailto:rrhsroyalrobotics@gmail.com" tabindex="0">rrhsroyalrobotics@gmail.com</a></p>
-      <p>Follow us on social media to stay updated on events and accomplishments.</p>
-    </section>
-  </main>
- <div class="logo-carousel" aria-label="Sponsor carousel">
+    <!-- Logo Carousel -->
+     <div class="logo-carousel" aria-label="Sponsor carousel">
   <div class="logo-carousel-track">
     <img src="images/logos/bama logo.jpg" alt="Bama Logo">
     <img src="images/logos/ezbooksolution-logo-small.jpg" alt="Ezbook Solution Logo">
@@ -663,10 +618,10 @@ footer {
     <img src="images/logos/verizon.avif" alt="Verizon Logo">
     <img src="images/logos/wa inc logo.avif" alt="WA INC Logo">
   </div>
-</div>
 
+  </main>
 
-
+  <!-- Footer -->
   <footer aria-label="Site Footer">
     <div class="footer-container">
       <div class="footer-section">
@@ -778,5 +733,6 @@ footer {
       })
     );
   </script>
+
 </body>
 </html>
