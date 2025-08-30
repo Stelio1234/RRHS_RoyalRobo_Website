@@ -160,22 +160,21 @@
       align-items: center;
       padding: 8rem 2rem;
       text-align: center;
-      color: #dedcff;
-      user-select: none;
       background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
                   url('images/team-photos/Teamphoto.jpg') no-repeat center center/cover;
-      width: 100%;
-      height: 500px; /* fixed height */
-      gap: 20px;
+      width: 300%;
+      height: 600px; /* was 500px */
+      margin-top: 2%;
     }
 
     .hero-content {
-      max-width: 1100px;
-      width: 100%;
+      max-width: 1400px;;;
+      height: 600px; /* was 500px */
       padding: 0 1rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: 1400px;
     }
 
     .hero h1 {
@@ -243,7 +242,7 @@
     section:hover,
     section:focus-within {
       background-color: #3a2f90;
-      outline: 3px solid #b085ff;
+      
     }
 
     section h2 {
@@ -279,7 +278,7 @@
       gap: 1rem;
       justify-content: center;
       width: 100%;
-      margin-bottom: 3rem;
+      
     }
 
     .stat-item {
@@ -297,8 +296,6 @@
     .stat-item:hover,
     .stat-item:focus-within {
       background-color: #4b3fbd;
-      outline: 3px solid #b085ff;
-      box-shadow: 0 6px 14px rgb(75 63 189 / 0.5);
     }
 
     .stat-number {
@@ -357,7 +354,7 @@
 
     .logo-carousel-track {
       display: flex;
-      animation: scrollLogos 15s linear infinite;
+      animation: scrollLogos 30s linear infinite;
       width: 200%;
       will-change: transform;
     }
@@ -368,10 +365,13 @@
       margin: 0 25px;
       object-fit: contain;
       transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .logo-carousel img:hover {
       transform: scale(1.1);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
     }
 
     @keyframes scrollLogos {
@@ -461,7 +461,19 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
-      main { max-width: 95%; }
+      main { max-width: 90%; }
+      .hero-content { margin: auto; width: 1000px; height: 50px;}
+      .hero {margin: 1rem; background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                  url('images/team-photos/Teamphoto.jpg') no-repeat center center/cover; height: 100px;}
+      #typing-text {
+      display: inline-block;
+      font-size: small
+      font-weight: 600;
+      color: #b085ff;
+      height: 2.5rem; /* fixes resizing */
+      margin-top: 0.6rem;
+      font-family: 'Courier New', Courier, monospace;
+    }
     }
 
     @media (max-width: 768px) {
@@ -493,13 +505,21 @@
       .hero h1 { font-size: clamp(1.8rem, 10vw, 2.5rem); }
       .hero h2 { font-size: clamp(1.3rem, 8vw, 1.8rem); }
       main { padding: 0 1rem; margin: 2rem auto 3rem; }
+      .hero-content { margin: auto; width: 290px; height: 100px;}
+      .hero {margin: 1rem; background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                  url('images/team-photos/Teamphoto.jpg') no-repeat center center/cover; height: 400px;}
     }
 
     @media (max-width: 480px) {
       section p,
       ul { font-size: 1rem; }
       ul { padding-left: 1rem; }
+      .hero-content { margin: auto; width: 290px; height: 100px;}
+      .hero {margin: 1rem; background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                  url('images/team-photos/Teamphoto.jpg') no-repeat center center/cover; height: 400px;}
     }
+
+    
 
   </style>
 </head>
@@ -528,7 +548,7 @@
 
   <!-- Hero Section -->
    <center>
-    <section class="hero" aria-label="Welcome section">
+  <section class="hero" aria-label="Welcome section">
     <div class="hero-content">
       <h1>RRHS Royal Robotics</h1>
       <h2>5842</h2>
@@ -652,23 +672,26 @@
     </section>
 
     <!-- Logo Carousel -->
-     <div class="logo-carousel" aria-label="Sponsor carousel">
+  <div class="logo-carousel" aria-label="Sponsor carousel">
   <div class="logo-carousel-track">
-    <img src="images/logos/bama logo.jpg" alt="Bama Logo">
-    <img src="images/logos/ezbooksolution-logo-small.jpg" alt="Ezbook Solution Logo">
-    <img src="images/logos/Final Araapl Logo Feb 2023-01.jpg" alt="Final Arapal Logo">
-    <img src="images/logos/gene haas foundation logo.jpg" alt="Gene Haas Foundation Logo">
-    <img src="images/logos/GSI-Web-Logo.jpg" alt="GSI Web Logo">
-    <img src="images/logos/hca healthcare foundation logo.jpg" alt="HCA Healthcare Foundation Logo">
-    <img src="images/logos/logo_2x RJM.jpg" alt="Logo 2x RJM">
-    <img src="images/logos/pasco edu.avif" alt="Pasco Edu">
-    <img src="images/logos/rec foundation logo.avif" alt="REC Foundation Logo">
-    <img src="images/logos/Richey suncost theatre.avif" alt="Richey Suncoast Theatre">
-    <img src="images/logos/sofwerx.avif" alt="Sofwerx Logo">
-    <img src="images/logos/trunu.avif" alt="Trunu Logo">
-    <img src="images/logos/van slone D&P logo.gif" alt="Van Slone D&P Logo">
-    <img src="images/logos/verizon.avif" alt="Verizon Logo">
-    <img src="images/logos/wa inc logo.avif" alt="WA INC Logo">
+    <a href="https://www.bama-fl.org/"><img src="images/logos/bama logo.jpg" alt="Bama Logo"></a>
+    <a href="https://ezbooksolution.com/"><img src="images/logos/ezbooksolution-logo-small.jpg" alt="Ezbook Solution Logo"></a>
+    <a href="https://humro.com/"><img src="images/logos/Final Araapl Logo Feb 2023-01.jpg" alt="Final Arapal Logo"></a>
+    <a href="https://www.ghaasfoundation.org/"><img src="images/logos/gene haas foundation logo.jpg" alt="Gene Haas Foundation Logo"></a>
+    <a href="https://www.geographicsolutions.com/"><img src="images/logos/GSI-Web-Logo.jpg" alt="GSI Web Logo"></a>
+    <a href="#"><img src="images/logos/hca healthcare foundation logo.jpg" alt="HCA Healthcare Foundation Logo"></a>
+    <a href="https://www.rjmanufacturing.com/"><img src="images/logos/rjm.png" alt="Logo 2x RJM"></a>
+    <a href="#"><img src="images/logos/pasco edu.avif" alt="Pasco Edu"></a>
+    <a href="https://recf.org/"><img src="images/logos/rec foundation logo.avif" alt="REC Foundation Logo"></a>
+    <a href="https://www.richeysuncoasttheatre.com/"><img src="images/logos/Richey suncost theatre.avif" alt="Richey Suncoast Theatre"></a>
+    <a href="#"><img src="images/logos/sofwerx.avif" alt="Sofwerx Logo"></a>
+    <a href="https://www.trinupowdercoating.com/"><img src="images/logos/trunu.avif" alt="Trunu Logo"></a>
+    <a href="#"><img src="images/logos/van slone D&P logo.gif" alt="Van Slone D&P Logo"></a>
+    <a href="https://stores.cellularsales.com/us/fl/new-port-richey/8718-trouble-creek-rd?y_source=1_MzIzMTM1NC03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D"><img src="images/logos/verizon.avif" alt="Verizon Logo"></a>
+    <a href="#"><img src="images/logos/wa inc logo.avif" alt="WA INC Logo"></a>
+  </div>
+</div>
+
   </div>
 
   </main>
