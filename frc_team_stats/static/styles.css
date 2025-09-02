@@ -1,0 +1,16 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0d0d0d;
+  color: #eee;
+  text-align: center;
+}
+
+h1 {
+  color: #a855f7;
+}
+
+select {
+  padding: 0.5em;
+  border-radius: 8px;
+  margin: 1em;
+}
