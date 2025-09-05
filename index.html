@@ -73,6 +73,7 @@ nav a:hover::after, nav a:focus::after { width:100%; }
   display:flex; flex-direction:column; justify-content:center; text-align:center; gap:10px; min-height:350px;
   border: 2px solid #b08fff; 
   box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+
 }
 @media(max-width:768px){
   .team-image{ width:95%; aspect-ratio:auto; padding:20px; min-height:200px; }
@@ -114,6 +115,7 @@ footer .social-links a svg{ width:24px; height:24px; fill:currentColor; }
         <a href="#" tabindex="0">Sponsors</a>
         <a href="#" tabindex="0">Donate</a>
         <a href="#" tabindex="0">Team</a>
+        <a href="media.html" tabindex="0">Media</a>
         <a href="#" tabindex="0">Contact</a>
       </nav>
       <div class="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">
@@ -237,6 +239,11 @@ footer .social-links a svg{ width:24px; height:24px; fill:currentColor; }
         sportsmanship, and community impact.
       </p>
       </div>
+      <div class="grid-item">
+        <h2>Latest Info</h2>
+        <p>Nothing to see yet</p>
+      </div>
+    
     </div>
       
 
@@ -311,7 +318,6 @@ footer .social-links a svg{ width:24px; height:24px; fill:currentColor; }
         <h3>Contact Us</h3>
         <p>Email: <a href="mailto:rrhsroyalrobotics@gmail.com" tabindex="0">rrhsroyalrobotics@gmail.com</a></p>
         <p>Address: 11646 Town Center Rd, New Port Richey, FL 34654</p>
-        <p>&copy; 2025 RRHS Royal Robtics. All Rights Reserved.</p>
         <p>Made by Stelio K</p>
       </div>
     </div>
@@ -392,6 +398,59 @@ eventSelect.addEventListener("change", e=>{
     });
 });
 </script>
+<script>
+    // Fade in on scroll (optional JS enhancement)
+    const fadeEls = document.querySelectorAll('.fade-in grid-item');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+      // Typing effect for hero subheading
+    const phrases = [
+      "Building Robots, Building Futures.",
+      "Innovation through Teamwork.",
+      "Engineering Excellence Since 2015.",
+      "STEM Leaders in Pasco County."
+    ];
+    const typingText = document.getElementById("typing-text");
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const delayBetweenPhrases = 2000;
+
+    function type() {
+      const currentPhrase = phrases[phraseIndex];
+      if (isDeleting) {
+        charIndex--;
+        typingText.textContent = currentPhrase.substring(0, charIndex);
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(type, 500);
+        } else {
+          setTimeout(type, deletingSpeed);
+        }
+      } else {
+        charIndex++;
+        typingText.textContent = currentPhrase.substring(0, charIndex);
+        if (charIndex === currentPhrase.length) {
+          isDeleting = true;
+          setTimeout(type, delayBetweenPhrases);
+        } else {
+          setTimeout(type, typingSpeed);
+        }
+      }
+    }
+    type();
+  </script>
 <script>
 
 </script>

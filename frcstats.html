@@ -137,6 +137,7 @@ footer .social-links a svg{ width:24px; height:24px; fill:currentColor; }
       <a href="#" tabindex="0">Sponsors</a>
       <a href="#" tabindex="0">Donate</a>
       <a href="#" tabindex="0">Team</a>
+      <a href="#" tabindex="0">Media</a>
       <a href="#" tabindex="0">Contact</a>
     </nav>
     <div class="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">
@@ -245,7 +246,7 @@ nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
 const eventSelect = document.getElementById("event-select");
 const matchesContainer = document.getElementById("matches-container");
 
-fetch("http://127.0.0.1:5000/api/events")
+fetch("https://tahr-beloved-lion.ngrok-free.app:5000/api/events")
     .then(res => res.json())
     .then(events => {
         eventSelect.innerHTML = "<option value=''>Select Event</option>";
@@ -276,7 +277,7 @@ eventSelect.addEventListener("change", e => {
         </div>
     `;
 
-    fetch(`http://127.0.0.1:5000/api/matches/${key}`)
+    fetch(`https://tahr-beloved-lion.ngrok-free.app:5000/api/matches/${key}`)
         .then(res => res.json())
         .then(matches => {
             matchesContainer.innerHTML = "";
@@ -306,5 +307,18 @@ eventSelect.addEventListener("change", e => {
         });
 });
 </script>
+<script>
+    // Fade in on scroll (optional JS enhancement)
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>

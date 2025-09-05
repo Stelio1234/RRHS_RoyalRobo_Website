@@ -1,11 +1,14 @@
 from flask import Flask, render_template, jsonify
-from flask_cors import CORS  # Import CORS
+from flask_cors import CORS 
 import requests
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app) 
 
 TEAM_NUMBER = 5842
+
+
+
 TBA_KEY = "R0lKB3gVkkfeU4pRcGR7JbyBsHuObqtQZZCCThNRprX1vTFvKOOnJObgBiIymnZu"
 
 HEADERS = {"X-TBA-Auth-Key": TBA_KEY}
@@ -45,10 +48,10 @@ def get_matches(event_key):
     
     try:
         r = requests.get(url, headers=HEADERS)
-        r.raise_for_status()  # This will raise an HTTPError for bad status codes (4xx or 5xx)
+        r.raise_for_status()  #
         matches = r.json()
         
-        # This will show you the JSON data received from the API
+        
         print(f"Received {len(matches)} matches.")
         
         return jsonify(matches)
@@ -58,6 +61,10 @@ def get_matches(event_key):
     except requests.exceptions.RequestException as e:
         print(f"Request Error: {e}")
         return jsonify({"error": "Failed to fetch matches"}), 500
+
+
+# Any other backend code geos bellow this line
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
