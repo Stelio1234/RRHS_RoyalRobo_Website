@@ -257,7 +257,7 @@ fetch("https://tahr-beloved-lion.ngrok-free.app:5000/api/events")
             eventSelect.appendChild(opt);
         });
     }).catch(err => {
-        console.error("Failed to fetch events:", err);
+        console.error("Failed To fetch events:", err);
         eventSelect.innerHTML = "<option value=''>Failed to load events</option>";
     });
 
