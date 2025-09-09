@@ -27,11 +27,21 @@ header {
   box-shadow: 0 2px 12px rgba(0,0,0,0.35);
   border-bottom: 2px solid #b08fff;
 }
-.container { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.container { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+.logo-wrap { display:flex; align-items:center; gap:0.75rem; font-weight:700; font-size:1.25rem; }
+.logo-wrap img { height:48px; width:auto; border-radius:8px; }
+
+/* Nav styling */
 nav { display:flex; gap:2rem; flex-wrap:wrap; }
-nav a { font-weight:600; font-size:1rem; position:relative; }
+nav a { font-weight:600; font-size:1rem; position:relative; color:#fff; } /* Changed to white for contrast */
 nav a::after { content:''; position:absolute; width:0; height:2px; bottom:-4px; left:0; background:#d0a8ff; transition:width 0.3s; }
 nav a:hover::after, nav a:focus::after { width:100%; }
+
+/* Anchor nav on desktop (already sticky, but ensure behavior ≥769px) */
+@media(min-width:769px){
+  header { position:fixed; width:100%; top:0; }
+  body { padding-top:90px; } /* Prevent content from hiding under nav */
+}
 
 /* Hamburger Menu */
 .menu-toggle { display:none; flex-direction:column; cursor:pointer; width:28px; height:22px; justify-content:space-between; z-index:1300; }
@@ -63,7 +73,7 @@ nav a:hover::after, nav a:focus::after { width:100%; }
 /* Stats */
 .stat-item { display:flex; flex-direction:column; justify-content:center; align-items:center; padding:1rem 2rem; transition: transform 0.3s; }
 .stat-item:hover { transform: scale(1.05); }
-.stat-number { font-size:2rem; font-weight:bold; color:#d0a8ff; }
+.stat-number { font-size:2rem; font-weight:bold; color:#e0c8ff; } /* lighter purple for better contrast */
 
 /* ===== Team Image ===== */
 .team-image {
@@ -120,7 +130,6 @@ footer .social-links a svg{ width:24px; height:24px; fill:currentColor; }
 .match-card .alliance.blue { background:#3b59b2; }
 .match-card .team-list { font-weight:400; font-size:0.9rem; }
 .match-card .score { font-size:1.3rem; font-weight:bold; text-align:right; }
-/*Spining Gears*/
 
 </style>
 </head>
@@ -128,7 +137,10 @@ footer .social-links a svg{ width:24px; height:24px; fill:currentColor; }
 <!--Nav Bar-->
 <header>
   <div class="container">
-    <div class="logo" aria-label="RRHS Royal Robotics">RRHS Royal Robotics</div>
+    <div class="logo-wrap" aria-label="RRHS Royal Robotics">
+      <img src="images/logos/royal-robotics-logo.png" alt="RRHS Royal Robotics Logo">
+      <span>RRHS Royal Robotics</span>
+    </div>
     <nav role="navigation" aria-label="Primary Navigation" id="primary-nav">
       <a href="index.html" tabindex="0">Home</a>
       <a href="#" tabindex="0">Competitions</a>
