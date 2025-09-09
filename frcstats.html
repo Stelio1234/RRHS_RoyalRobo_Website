@@ -246,7 +246,7 @@ nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
 const eventSelect = document.getElementById("event-select");
 const matchesContainer = document.getElementById("matches-container");
 
-fetch("https://tahr-beloved-lion.ngrok-free.app:5000/api/events")
+fetch("https://tahr-beloved-lion.ngrok-free.app/api/events")
     .then(res => res.json())
     .then(events => {
         eventSelect.innerHTML = "<option value=''>Select Event</option>";
@@ -277,7 +277,7 @@ eventSelect.addEventListener("change", e => {
         </div>
     `;
 
-    fetch(`https://tahr-beloved-lion.ngrok-free.app:5000/api/matches/${key}`)
+    fetch(`https://tahr-beloved-lion.ngrok-free.app/api/matches/${key}`)
         .then(res => res.json())
         .then(matches => {
             matchesContainer.innerHTML = "";
