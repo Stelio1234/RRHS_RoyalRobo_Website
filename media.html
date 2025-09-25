@@ -68,25 +68,55 @@
     }
 
     /* ===== Grid Layout ===== */
-    .grid-row { 
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); 
-      gap:2rem; padding:2rem; 
-      border-top:1px solid rgba(255,255,255,0.08); 
-    }
-    .grid-item { 
-      background: rgba(50,45,90,0.95);
-      padding:1.5rem; border-radius:16px; 
-      transition: transform 0.3s, box-shadow 0.3s; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      border-left: 3px solid transparent; 
-      opacity:0; transform: translateY(20px); 
-    }
-    .grid-item.visible { opacity:1; transform: translateY(0); transition: all 0.6s ease; }
-    .grid-item:hover { 
-      transform: translateY(-6px) scale(1.02); 
-      box-shadow: 0 8px 25px rgba(0,0,0,0.45);
-      background: rgba(75, 60, 120, 0.95); 
-    }
+  .grid-row {
+  display: flex;
+  flex-direction: column; /* stack rows vertically */
+  gap: 2rem;
+  padding: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.grid-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(50,45,90,0.95);
+  padding: 1.5rem;
+  border-radius: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border-left: 3px solid transparent;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.grid-item img {
+  max-width: 220px;
+  border-radius: 12px;
+  flex-shrink: 0; /* keeps img size steady */
+}
+
+.grid-item ul {
+  margin-left: 1rem;
+}
+
+.grid-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease;
+}
+
+/* stack image on top when small screen */
+@media(max-width:768px){
+  .grid-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .grid-item img {
+    max-width: 100%;
+  }
+}
+
 
     /* Stats */
     .stat-item { display:flex; flex-direction:column; justify-content:center; align-items:center; padding:1rem 2rem; transition: transform 0.3s; }
@@ -125,12 +155,11 @@
     footer .social-links a svg{ width:24px; height:24px; fill:currentColor; }
 
     /* ===== Typing effect ===== */
-    #typing-text{ min-height:1.2em; font-weight:600; color:#ffffff; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif }
+
 
     /*=== gears ====*/
     
   </style>
-</head>
 <body>
   <!--Nav Bar-->
   <header>
@@ -155,139 +184,145 @@
     </div>
   </header>
 
-  <!--Team img/Tittle text-->
-  <div class="team-image">
-    <h1>RRHS Royal Robotics</h1>
-    <h2>5842</h2>
-    <h3 id="typing-text" aria-live="polite"></h3>
-  </div>
-
-  <!-- Content Sections -->
-  <div class="grid-row">
-    <!--About Us-->
-    <div class="grid-item fade-in">
-      <h2>About Us</h2>
-      <p>
-        RRHS Royal Robotics, FRC Team 5842, is based in New Port Richey, Florida at River Ridge High School. 
-        Since our founding in 2015, we’ve grown into a competitive robotics program that empowers students 
-        with hands-on experience in engineering, coding, design, and leadership.
-      </p>
-      <p>
-        We proudly compete in the <strong>FIRST Robotics Competition</strong> and <strong>VEX Robotics</strong>, 
-        fostering teamwork, problem-solving, and innovation. Beyond building robots, we strive to inspire 
-        the next generation of STEM leaders in our community.
-      </p>
-    </div>
-    <!--Mission-->
-    <div class="grid-item fade-in">
-      <h2>Our Mission</h2>
-      <p>
-        To empower students through hands-on robotics challenges, foster STEM education, and build leaders who create meaningful impact in their communities and beyond.
-      </p>
-    </div>
-    <!-- Community Outreach -->
-    <div class="grid-item fade-in">
-      <h2>Community Outreach</h2>
-      <p>
-        Our outreach program builds positive relationships within the community and encourages younger 
-        students to pursue STEM fields. Team members gain leadership, communication, and teamwork skills 
-        while promoting innovation.
-      </p>
+<div class="grid-row">
+  <div class="grid-item fade-in">
+    <img src="/images/IMG_1264.avif" alt="Team photo 2023-2024">
+    <div>
+      <h2>2023 - 2024</h2>
       <ul>
-        <li>Present at the <strong>USF Engineering Expo</strong> to inspire K–12 students.</li>
-        <li>Operate <em>“Gopsi”</em>, our pneumatic cannon robot, at parades and pep rallies.</li>
-        <li>Promote STEM at local vendor fairs and festivals.</li>
-        <li>Mentor River Ridge Middle School’s <strong>FIRST LEGO League</strong> team.</li>
-        <li>Host <strong>RRHS STEM Summer Camp</strong> for students in grades 5–8.</li>
+        <li>3rd Seed Alliance Captain at FIRST Orlando Regional Competition</li>
+        <li>8th Seed Alliance Captain at FIRST South Florida Regional​ Competition</li>
+        <li>2nd Place Roboticon Tampa Bay Competition</li>
       </ul>
     </div>
   </div>
+</div>
 
-  <!-- Stats -->
+<div class="grid-row">
+  <div class="grid-item fade-in">
+    <img src="images/Team photo 2023-2024.avif" alt="Team photo 2023-2024">
+    <div>
+      <h2>2022 - 2023</h2>
+      <ul>
+        <li>Winner Roboticon Tampa Bay Competition</li>
+        <li>4th Seed Alliance Captain in Central Florida Regional</li>
+        <li>3 Vex State Qualifying Teams</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
   <div class="grid-row">
     <div class="grid-item fade-in">
-      <section class="stat-item" aria-label="Year Established" tabindex="0">
-        <div class="stat-number">2015</div>
-        <div class="stat-label">Year Established</div>
-      </section>
-    </div>
-    <div class="grid-item fade-in">
-      <section class="stat-item" aria-label="Awards Won" tabindex="0">
-        <div class="stat-number">16</div>
-        <div class="stat-label">Awards Won</div>
-      </section>
-    </div>
-    <div class="grid-item fade-in">
-      <section class="stat-item" aria-label="Active Members" tabindex="0">
-        <div class="stat-number">25</div>
-        <div class="stat-label">Active Members</div>
-      </section>
-    </div>
-    <div class="grid-item fade-in">
-      <section class="stat-item" aria-label="Teams Mentored" tabindex="0">
-        <div class="stat-number">10</div>
-        <div class="stat-label">Teams Mentored</div>
-      </section>
+      <img src="images/2022.avif" alt="Team photo 2023-2024">
+      <div>
+        <h2>2021 - 2022</h2>
+        <ul>
+          <li>Team Spirit award at FIRST South Florida Regional Competition</li>
+          <li>Alliance captain</li>
+          <li>Vex State Qualifier</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <!-- Accomplishments & Competitions -->
+
   <div class="grid-row">
     <div class="grid-item fade-in">
-      <h2>Accomplishments</h2>
-      <h3>2023–2024 Season</h3>
-      <ul>
-        <li>3rd Seed Alliance Captain — FIRST Orlando Regional</li>
-        <li>8th Seed Alliance Captain — FIRST South Florida Regional</li>
-        <li>2nd Place — Roboticon Tampa Bay</li>
-      </ul>
-      <h3>2022–2023 Season</h3>
-      <ul>
-        <li>Winner — Roboticon Tampa Bay</li>
-        <li>4th Seed Alliance Captain — Central Florida Regional</li>
-        <li>3 VEX State Qualifying Teams</li>
-      </ul>
-      <h3>2021–2022 Season</h3>
-      <ul>
-        <li>Team Spirit Award — FIRST South Florida Regional</li>
-        <li>Alliance Captain</li>
-        <li>VEX State Qualifier</li>
-      </ul>
-    </div>
-    <div class="grid-item fade-in">
-      <h2>Competitions</h2>
-      <p>
-        Each year, our team participates in the <strong>FIRST Robotics Competition</strong> as well as 
-        <strong>VEX Robotics tournaments</strong>. These competitions challenge us to design, program, 
-        and build robots that can perform complex tasks under strict time and resource limits.
-      </p>
-      <p>
-        Our team has earned recognition not only for technical achievement, but also for creativity, 
-        sportsmanship, and community impact.
-      </p>
-    </div>
-    <div class="grid-item fade-in">
-      <h2>Latest Info</h2>
-      <p>Nothing to see yet</p>
+      <img src="images/2022.avif" alt="Team photo 2023-2024">
+      <div>
+        <h2>2020 - 2021</h2>
+        <ul>
+          <li>Vex State Qualifier</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <!-- FIRST Info -->
   <div class="grid-row">
     <div class="grid-item fade-in">
-      <h2>About FIRST Robotics</h2>
-      <p>
-        <a href="https://www.firstinspires.org/" target="_blank" rel="noopener">FIRST (For Inspiration and Recognition of Science and Technology)</a> 
-        is a global robotics community that prepares young people for the future.
-      </p>
-      <p>
-        The <strong>FIRST Robotics Competition (FRC)</strong> combines the excitement of sport with the 
-        rigors of science and technology. Teams of high school students, coaches, and mentors build 
-        industrial-size robots to compete in themed challenges, gaining valuable skills in engineering, 
-        programming, and collaboration.
-      </p>
+      <img src="images/2022.avif" alt="Team photo 2023-2024">
+      <div>
+        <h2>2019 - 2020</h2>
+        <ul>
+          <li>Winner Roboticon Tampa Bay Competition</li>
+          <li>Vex State Qualifier</li>
+        </ul>
+      </div>
     </div>
   </div>
+
+  <div class="grid-row">
+    <div class="grid-item fade-in">
+      <img src="images/2022.avif" alt="Team photo 2023-2024">
+      <div>
+        <h2>2019 - 2020</h2>
+        <ul>
+          <li>Winner Roboticon Tampa Bay Competition</li>
+          <li>Vex State Qualifier</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="grid-item fade-in">
+      <img src="images/2022.avif" alt="Team photo 2023-2024">
+      <div>
+        <h2>2018 - 2019</h2>
+        <ul>
+          <li>Semi-Finalist South Florida FIRST Regional Competition</li>
+          <li>Won FIRST Greater Pittsburgh Regional Competition</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="grid-item fade-in">
+      <img src="images/2022.avif" alt="Team photo 2023-2024">
+      <div>
+        <h2>2017 - 2018</h2>
+        <ul>
+          <li>First Place Alliance Roboticon Tampa Bay Competition</li>
+          <li>Creativity Award FIRST World Championship</li>
+          <li>First Place Lone Star FIRST North Regional Competition</li>
+          <li>Industrial Design Award Lone Star FIRST North Regional Competition</li>
+          <li>Excellence in Engineering Award FIRST Rocket City Regional Competition</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="grid-item fade-in">
+      <img src="images/2022.avif" alt="Team photo 2023-2024">
+      <div>
+        <h2>2017 - 2018</h2>
+        <ul>
+          <li>Won FIRST Lone Star North Regional Competition</li>
+          <li>Semi-Finalist FIRST Robotics World Championship</li>
+          <li>Rookie All-Star Award FIRST South Florida Regional Competition</li>
+          <li>Rookie Inspiration Award FIRST Orlando Regional Competition</li>
+          <li>First Place VEX Robotics Competition Greater Tampa League</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="grid-item fade-in">
+      <img src="images/2022.avif" alt="Team photo 2023-2024">
+      <div>
+        <h2>2017 - 2018</h2>
+        <ul>
+          <li>Gracious Professionalism Award Roboticon Tampa Bay</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Logo Carousel -->
   <div class="logo-carousel" aria-label="Sponsor carousel">
@@ -345,25 +380,10 @@
     </div>
   </div>
 </footer>
-
+</body>
 
   <!-- JS -->
   <script>
-    // Typing effect
-    const typingText=document.getElementById("typing-text");
-    const phrases=["Building the future, one robot at a time.","Inspiring innovation and leadership.","Competing with passion and creativity."];
-    let idx=0,char=0,isDel=false;
-    function type(){
-      const current=phrases[idx];
-      if(!isDel){
-        typingText.textContent=current.substring(0,char++);
-        if(char>current.length){isDel=true;setTimeout(type,2000);return;}
-      }else{
-        typingText.textContent=current.substring(0,char--);
-        if(char<0){isDel=false;idx=(idx+1)%phrases.length;}
-      }
-      setTimeout(type,isDel?50:100);
-    } type();
 
     // Menu toggle
     const menuToggle=document.querySelector(".menu-toggle"), nav=document.querySelector("nav");
